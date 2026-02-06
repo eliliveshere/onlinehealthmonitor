@@ -53,65 +53,72 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* HERO (Condensed for 1-screen desktop fit) */}
-      <section className="border-b border-zinc-100 bg-gradient-to-b from-zinc-50/50 to-white">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-8 md:grid-cols-2 md:py-12 md:items-center min-h-[calc(100vh-64px)] md:min-h-0">
+      {/* HERO (Condensed & Polished) */}
+      <section className="relative border-b border-zinc-100 bg-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-dot-pattern opacity-[0.4] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white pointer-events-none" />
+
+        <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-8 md:grid-cols-2 md:py-16 md:items-center min-h-[calc(100vh-64px)] md:min-h-0">
           <div className="flex flex-col justify-center">
             {/* Who it's for */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-medium text-zinc-600 mb-4 shadow-sm w-fit">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/80 backdrop-blur-sm px-3 py-1 text-xs font-medium text-zinc-600 mb-5 shadow-sm w-fit transition-transform hover:scale-105 cursor-default">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
               Built for local businesses that rely on calls + inquiries
             </div>
 
             {/* Rewrite hero headline */}
-            <h1 className="text-3xl font-bold tracking-tight md:text-5xl text-zinc-900 leading-[1.1]">
-              Find silent problems that cost you calls each month.
+            <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-zinc-900 leading-[1.05]">
+              Find silent problems that cost you <span className="text-zinc-400 decoration-zinc-300 underline decoration-2 underline-offset-4">calls</span>.
             </h1>
-            <p className="mt-4 text-lg text-zinc-500 leading-relaxed font-normal max-w-lg">
+            <p className="mt-5 text-lg text-zinc-600 leading-relaxed font-normal max-w-lg">
               We monitor your website, Google listing, and (optionally) call trends — then send a simple monthly score
               and one clear fix to protect revenue.
             </p>
 
             {/* Trust signals */}
-            <div className="mt-6 flex flex-wrap gap-2 text-xs font-medium text-zinc-600">
-              <span className="rounded-full border border-zinc-200 bg-white px-3 py-1.5 shadow-sm">Privacy-first</span>
-              <span className="rounded-full border border-zinc-200 bg-white px-3 py-1.5 shadow-sm">No recordings</span>
-              <span className="rounded-full border border-zinc-200 bg-white px-3 py-1.5 shadow-sm">Call tracking optional</span>
+            <div className="mt-8 flex flex-wrap gap-2 text-xs font-medium text-zinc-600">
+              <span className="rounded-full border border-zinc-200 bg-white/50 px-3 py-1.5 shadow-sm backdrop-blur-sm">Privacy-first</span>
+              <span className="rounded-full border border-zinc-200 bg-white/50 px-3 py-1.5 shadow-sm backdrop-blur-sm">No recordings</span>
+              <span className="rounded-full border border-zinc-200 bg-white/50 px-3 py-1.5 shadow-sm backdrop-blur-sm">Call tracking optional</span>
             </div>
 
             {/* CTA row */}
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href="#audit"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-zinc-900 px-6 py-3 text-white font-bold hover:bg-zinc-800 transition-all shadow-lg shadow-zinc-900/10 hover:shadow-zinc-900/20"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-zinc-900 px-6 py-4 text-white font-bold hover:bg-zinc-800 transition-all shadow-xl shadow-zinc-900/10 hover:shadow-zinc-900/20 active:scale-[0.98]"
               >
                 Get my free audit <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href="#sample"
-                className="inline-flex items-center justify-center rounded-2xl border border-zinc-200 px-6 py-3 font-semibold text-zinc-900 hover:bg-zinc-50 hover:border-zinc-300 transition-all bg-white"
+                className="inline-flex items-center justify-center rounded-2xl border border-zinc-200 px-6 py-4 font-semibold text-zinc-900 hover:bg-zinc-50 hover:border-zinc-300 transition-all bg-white"
               >
                 See a sample report
               </a>
             </div>
 
-            <p className="mt-3 text-xs font-medium text-zinc-400 flex items-center gap-2">
+            <p className="mt-4 text-xs font-medium text-zinc-400 flex items-center gap-2">
               <CheckCircle2 className="w-3.5 h-3.5 text-zinc-400" />
-              Takes ~60 seconds. You’ll get a preview score.
+              Takes ~60 seconds. You’ll get a preview score immediately.
             </p>
 
-            {/* Tiny “why now” - Condensed */}
-            <div className="mt-6 p-4 rounded-xl bg-amber-50/50 border border-amber-100 flex gap-3">
+            {/* Tiny “why now” */}
+            <div className="mt-8 p-4 rounded-2xl bg-gradient-to-br from-amber-50 to-white border border-amber-100/60 shadow-sm flex gap-3 max-w-md">
               <AlertCircle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
               <p className="text-xs text-zinc-600 leading-relaxed">
-                <strong className="text-zinc-900">Why this matters:</strong> Most businesses lose leads from small issues like broken forms or wrong hours. You don’t notice until revenue dips.
+                <strong className="text-zinc-900 font-semibold">Why this matters:</strong> Most businesses lose leads from small issues like broken forms or wrong hours. You don’t notice until revenue dips.
               </p>
             </div>
           </div>
 
-          {/* AUDIT FORM CARD (Condensed) */}
-          <div id="audit" className="bg-white rounded-3xl border border-zinc-200 p-6 shadow-xl shadow-zinc-200/50 relative overflow-hidden">
-            <div className="absolute top-0 inset-x-0 h-1 bg-zinc-900"></div>
+          {/* AUDIT FORM CARD (Polish) */}
+          <div id="audit" className="bg-white/80 backdrop-blur-md rounded-[2rem] border border-zinc-200/60 p-6 md:p-8 shadow-2xl shadow-zinc-200/40 relative overflow-hidden group hover:shadow-zinc-300/30 transition-shadow duration-500">
+            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-zinc-900 via-zinc-700 to-zinc-900"></div>
 
             {formStatus === 'idle' ? (
               <>
@@ -193,7 +200,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* HOW IT WORKS (clarify monthly value early) */}
+      {/* HOW IT WORKS */}
       <section id="how" className="mx-auto max-w-6xl px-4 py-20 lg:py-24">
         <div className="max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">How it works</h2>
@@ -230,7 +237,7 @@ export default function HomePage() {
           </ul>
         </div>
 
-        {/* CTA repetition (Tier 3) */}
+        {/* CTA repetition */}
         <div className="mt-12 text-center md:text-left">
           <a
             href="#audit"
@@ -241,7 +248,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SAMPLE REPORT (Tier 1) */}
+      {/* SAMPLE REPORT (Polished) */}
       <section id="sample" className="border-y border-zinc-100 bg-zinc-50">
         <div className="mx-auto max-w-6xl px-4 py-20 lg:py-24">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
@@ -253,11 +260,11 @@ export default function HomePage() {
 
               <div className="mt-10 grid gap-4">
                 {[
-                  ["Score + Momentrum", "See this month vs last month so you notice trends early."],
+                  ["Score + Momentum", "See this month vs last month so you notice trends early."],
                   ["Signal Breakdown", "Calls/forms, Google listing, speed/mobile, reviews, social consistency."],
                   ["One Priority Fix", "The highest-impact fix you can assign or do yourself."],
                 ].map(([t, d]) => (
-                  <div key={t} className="rounded-2xl border border-zinc-100 bg-white p-5 shadow-sm flex items-start gap-4">
+                  <div key={t} className="rounded-2xl border border-zinc-100 bg-white p-5 shadow-sm flex items-start gap-4 transition-colors hover:border-zinc-300">
                     <div className="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center shrink-0 mt-0.5">
                       <CheckCircle2 className="w-4 h-4 text-zinc-500" />
                     </div>
@@ -270,70 +277,71 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Simulated Report Visual (High Fidelity) */}
+            {/* Simulated Report Visual (High Fidelity with Polish) */}
             <div className="relative group perspective-1000 w-full max-w-lg mx-auto lg:mr-0">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-zinc-200 to-zinc-300 rounded-[2rem] opacity-50 blur-xl -z-10 group-hover:opacity-75 transition-opacity duration-500" />
-              <div className="rounded-3xl border border-zinc-200 bg-white shadow-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-500 overflow-hidden relative">
+              <div className="absolute -inset-4 bg-gradient-to-tr from-zinc-200 via-zinc-100 to-zinc-200 rounded-[2.5rem] opacity-50 blur-2xl -z-10 group-hover:opacity-75 transition-opacity duration-500" />
+              <div className="rounded-[2rem] border border-zinc-200/80 bg-white shadow-2xl shadow-zinc-200/50 transform rotate-1 group-hover:rotate-0 transition-transform duration-500 overflow-hidden relative">
 
                 {/* 1. Header Block */}
-                <div className="p-6 border-b border-zinc-100 bg-white">
+                <div className="p-6 border-b border-zinc-100 bg-white/50 backdrop-blur-sm">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Monthly Report</div>
-                      <div className="font-bold text-zinc-900 text-lg">Maple Ridge Plumbing</div>
-                      <div className="text-xs text-zinc-500">March 2026 • Toronto, ON</div>
+                      <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Monthly Report</div>
+                      <div className="font-bold text-zinc-900 text-lg tracking-tight">Maple Ridge Plumbing</div>
+                      <div className="text-xs text-zinc-500 font-medium">March 2026 • Toronto, ON</div>
                     </div>
-                    <div className="h-8 w-8 bg-zinc-100 rounded-full flex items-center justify-center">
+                    <div className="h-8 w-8 bg-zinc-50 border border-zinc-100 rounded-full flex items-center justify-center">
                       <Activity className="w-4 h-4 text-zinc-400" />
                     </div>
                   </div>
 
                   <div className="flex items-end justify-between">
                     <div>
-                      <div className="text-4xl font-bold text-zinc-900 tracking-tight leading-none">6.5<span className="text-xl text-zinc-300 font-medium">/10</span></div>
+                      <div className="text-5xl font-bold text-zinc-900 tracking-tighter leading-none">6.5<span className="text-2xl text-zinc-300 font-medium">/10</span></div>
                     </div>
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-50 text-red-700 text-[10px] font-bold uppercase tracking-wide rounded-full border border-red-100">
+                    <div className="flex items-center gap-1.5 px-3 py-1 bg-rose-50 text-rose-600 text-[10px] font-bold uppercase tracking-wide rounded-full border border-rose-100">
                       <TrendingDown className="w-3 h-3" /> Slightly down
                     </div>
                   </div>
                 </div>
 
                 {/* 2. Status Grid (Mini) */}
-                <div className="p-6 bg-zinc-50/50 space-y-6">
+                <div className="p-6 bg-zinc-50/30 space-y-5">
                   <div className="grid grid-cols-2 gap-3">
                     {/* Card 1 */}
-                    <div className="bg-white border border-zinc-200 p-3 rounded-xl shadow-sm">
+                    <div className="bg-white border border-zinc-200/60 p-3.5 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                       <div className="flex justify-between mb-2">
-                        <div className="p-1.5 bg-zinc-50 rounded-md"><Globe className="w-3 h-3 text-zinc-400" /></div>
-                        <div className="w-2 h-2 rounded-full bg-amber-400" />
+                        <div className="p-1.5 bg-zinc-50 rounded-lg border border-zinc-100"><Globe className="w-3 h-3 text-zinc-400" /></div>
+                        <div className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
                       </div>
                       <div className="text-xs font-bold text-zinc-900">Website</div>
-                      <div className="text-[10px] text-zinc-500 mt-0.5">Mobile friction</div>
+                      <div className="text-[10px] text-zinc-500 mt-0.5 font-medium">Mobile friction</div>
                     </div>
                     {/* Card 2 */}
-                    <div className="bg-white border border-zinc-200 p-3 rounded-xl shadow-sm">
+                    <div className="bg-white border border-zinc-200/60 p-3.5 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                       <div className="flex justify-between mb-2">
-                        <div className="p-1.5 bg-zinc-50 rounded-md"><MapPin className="w-3 h-3 text-zinc-400" /></div>
-                        <div className="w-2 h-2 rounded-full bg-green-500" />
+                        <div className="p-1.5 bg-zinc-50 rounded-lg border border-zinc-100"><MapPin className="w-3 h-3 text-zinc-400" /></div>
+                        <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
                       </div>
                       <div className="text-xs font-bold text-zinc-900">Google</div>
-                      <div className="text-[10px] text-zinc-500 mt-0.5">Visibility up</div>
+                      <div className="text-[10px] text-zinc-500 mt-0.5 font-medium">Visibility up</div>
                     </div>
                   </div>
 
                   {/* 3. Recommendation */}
-                  <div className="bg-zinc-900 rounded-xl p-5 shadow-lg text-white relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-3 opacity-10"><Activity className="w-12 h-12" /></div>
+                  <div className="bg-zinc-900 rounded-2xl p-5 shadow-xl shadow-zinc-900/10 text-white relative overflow-hidden group/card cursor-default">
+                    <div className="absolute top-0 right-0 p-3 opacity-10 group-hover/card:opacity-20 transition-opacity"><Activity className="w-12 h-12" /></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
                     <div className="text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-2 flex items-center gap-1.5"><ArrowRight className="w-3 h-3" /> Priority Action</div>
                     <div className="font-bold text-sm mb-1 leading-snug">"Add simple missed-call capture."</div>
-                    <div className="text-[10px] text-zinc-400">You missed 4 potential leads after 5pm.</div>
+                    <div className="text-[10px] text-zinc-400 font-medium">You missed 4 potential leads after 5pm.</div>
                   </div>
 
                   {/* 4. Trends */}
-                  <div className="border-t border-zinc-200 pt-4 flex justify-between text-[10px] font-medium text-zinc-500">
+                  <div className="border-t border-zinc-200 pt-4 flex justify-between text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">
                     <span>Forms: <span className="text-amber-600">Risk</span></span>
-                    <span>Speed: <span className="text-zinc-900">Stable</span></span>
-                    <span>Reviews: <span className="text-zinc-900">Flat</span></span>
+                    <span>Speed: <span className="text-zinc-700">Stable</span></span>
+                    <span>Reviews: <span className="text-zinc-700">Flat</span></span>
                   </div>
                 </div>
               </div>
@@ -346,7 +354,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WHAT YOU GET (Tier 2: reorder features by pain) */}
+      {/* WHAT YOU GET */}
       <section id="what" className="mx-auto max-w-6xl px-4 py-20 lg:py-24">
         <div className="max-w-3xl">
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">What we monitor <span className="text-zinc-400 font-normal">(ordered by revenue impact)</span></h2>
@@ -374,7 +382,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Trust reinforcement (Tier 1 moved higher, but reinforce here too) */}
+        {/* Trust reinforcement */}
         <div className="mt-12 rounded-3xl border border-zinc-200 bg-zinc-50 p-6 flex flex-col md:flex-row items-center gap-4 text-sm font-medium text-zinc-600 text-center md:text-left justify-center">
           <div className="p-2 bg-white rounded-full shadow-sm border border-zinc-100">
             <ShieldCheck className="w-5 h-5 text-zinc-900" />
@@ -385,7 +393,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* CTA repetition (Tier 3) */}
+        {/* CTA repetition */}
         <div className="mt-12 text-center">
           <a
             href="#audit"
@@ -396,7 +404,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PRICING (Tier 2: anchor vs agencies + monthly value) */}
+      {/* PRICING */}
       <section id="pricing" className="border-y border-zinc-100 bg-zinc-50">
         <div className="mx-auto max-w-6xl px-4 py-20 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -468,7 +476,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* CTA repetition (Tier 3) */}
+        {/* CTA repetition */}
         <div className="mt-12 text-center">
           <a
             href="#audit"
@@ -479,7 +487,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FINAL CTA (Tier 3: stronger repetition + hierarchy) */}
+      {/* FINAL CTA */}
       <section className="border-t border-zinc-100 bg-white pb-20">
         <div className="mx-auto max-w-6xl px-4 py-20">
           <div className="rounded-[2.5rem] border border-zinc-200 bg-zinc-50 p-8 md:p-12 md:flex md:items-center md:justify-between relative overflow-hidden">

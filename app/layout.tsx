@@ -13,8 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Online Health Monitor | Digital Health for Local Business",
-  description: "The Norton Antivirus of your online presence. Simple monthly reports for local businesses.",
+  title: "Online Health Monitor | Stop Losing Leads",
+  description: "A monthly health check for your website and Google listing. Catch silent problems like broken forms, wrong hours, and missed calls before they cost you revenue.",
+  openGraph: {
+    title: "Online Health Monitor | Is your website costing you calls?",
+    description: "Get a free 60-second audit. We monitor your online presence and send one clear fix each month.",
+    url: "https://onlinehealthmonitor.vercel.app",
+    siteName: "Online Health Monitor",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Online Health Monitor | Stop Losing Leads",
+    description: "Catch broken forms, wrong hours, and missed calls before they cost you revenue.",
+  },
 };
 
 export default function RootLayout({

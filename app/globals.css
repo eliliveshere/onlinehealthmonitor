@@ -2,7 +2,8 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #111827; /* Gray 900 */
+  --foreground: #111827;
+  /* Gray 900 */
 }
 
 @theme inline {
@@ -17,6 +18,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(#e4e4e7 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 html {
