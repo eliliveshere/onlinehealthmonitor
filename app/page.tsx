@@ -10,7 +10,10 @@ import {
   Activity,
   Lock,
   TrendingDown,
-  Minus
+  Minus,
+  Globe,
+  MapPin,
+  PhoneCall
 } from "lucide-react";
 
 export default function HomePage() {
@@ -312,45 +315,76 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Simulated Report Visual */}
-            <div className="relative group perspective-1000">
-              <div className="absolute -inset-2 bg-gradient-to-tr from-zinc-200 to-zinc-300 rounded-[2rem] opacity-50 blur-xl -z-10 group-hover:opacity-75 transition-opacity duration-500" />
-              <div className="rounded-3xl border border-zinc-200 bg-white p-2 shadow-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-500">
-                <div className="rounded-2xl bg-zinc-50 border border-zinc-100 overflow-hidden">
-                  {/* Fake Header */}
-                  <div className="bg-white border-b border-zinc-100 p-4 flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-zinc-900 rounded-md"></div>
-                      <div className="h-2 w-24 bg-zinc-200 rounded"></div>
+            {/* Simulated Report Visual (High Fidelity) */}
+            <div className="relative group perspective-1000 w-full max-w-lg mx-auto lg:mr-0">
+              <div className="absolute -inset-4 bg-gradient-to-tr from-zinc-200 to-zinc-300 rounded-[2rem] opacity-50 blur-xl -z-10 group-hover:opacity-75 transition-opacity duration-500" />
+              <div className="rounded-3xl border border-zinc-200 bg-white shadow-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-500 overflow-hidden relative">
+
+                {/* 1. Header Block */}
+                <div className="p-6 border-b border-zinc-100 bg-white">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Monthly Report</div>
+                      <div className="font-bold text-zinc-900 text-lg">Maple Ridge Plumbing</div>
+                      <div className="text-xs text-zinc-500">March 2026 • Toronto, ON</div>
                     </div>
-                    <div className="h-8 w-20 bg-zinc-100 rounded-lg"></div>
+                    <div className="h-8 w-8 bg-zinc-100 rounded-full flex items-center justify-center">
+                      <Activity className="w-4 h-4 text-zinc-400" />
+                    </div>
                   </div>
-                  {/* Fake Grid */}
-                  <div className="p-6 grid gap-6">
-                    <div className="flex justify-between items-end">
-                      <div>
-                        <div className="h-3 w-32 bg-zinc-200 rounded mb-2"></div>
-                        <div className="h-10 w-24 bg-zinc-900 rounded-lg"></div>
-                      </div>
-                      <div className="h-12 w-24 bg-amber-100 rounded-lg border border-amber-200"></div>
+
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <div className="text-4xl font-bold text-zinc-900 tracking-tight leading-none">6.5<span className="text-xl text-zinc-300 font-medium">/10</span></div>
                     </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      {[1, 2, 3, 4].map(i => (
-                        <div key={i} className="bg-white border border-zinc-200 p-4 rounded-xl shadow-sm h-24">
-                          <div className="h-3 w-8 bg-zinc-100 rounded mb-2"></div>
-                          <div className="h-4 w-16 bg-zinc-200 rounded"></div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="bg-zinc-900 rounded-xl p-5 shadow-lg">
-                      <div className="h-3 w-24 bg-zinc-700/50 rounded mb-3"></div>
-                      <div className="h-4 w-48 bg-white/20 rounded"></div>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-50 text-red-700 text-[10px] font-bold uppercase tracking-wide rounded-full border border-red-100">
+                      <TrendingDown className="w-3 h-3" /> Slightly down
                     </div>
                   </div>
                 </div>
+
+                {/* 2. Status Grid (Mini) */}
+                <div className="p-6 bg-zinc-50/50 space-y-6">
+                  <div className="grid grid-cols-2 gap-3">
+                    {/* Card 1 */}
+                    <div className="bg-white border border-zinc-200 p-3 rounded-xl shadow-sm">
+                      <div className="flex justify-between mb-2">
+                        <div className="p-1.5 bg-zinc-50 rounded-md"><Globe className="w-3 h-3 text-zinc-400" /></div>
+                        <div className="w-2 h-2 rounded-full bg-amber-400" />
+                      </div>
+                      <div className="text-xs font-bold text-zinc-900">Website</div>
+                      <div className="text-[10px] text-zinc-500 mt-0.5">Mobile friction</div>
+                    </div>
+                    {/* Card 2 */}
+                    <div className="bg-white border border-zinc-200 p-3 rounded-xl shadow-sm">
+                      <div className="flex justify-between mb-2">
+                        <div className="p-1.5 bg-zinc-50 rounded-md"><MapPin className="w-3 h-3 text-zinc-400" /></div>
+                        <div className="w-2 h-2 rounded-full bg-green-500" />
+                      </div>
+                      <div className="text-xs font-bold text-zinc-900">Google</div>
+                      <div className="text-[10px] text-zinc-500 mt-0.5">Visibility up</div>
+                    </div>
+                  </div>
+
+                  {/* 3. Recommendation */}
+                  <div className="bg-zinc-900 rounded-xl p-5 shadow-lg text-white relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-3 opacity-10"><Activity className="w-12 h-12" /></div>
+                    <div className="text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-2 flex items-center gap-1.5"><ArrowRight className="w-3 h-3" /> Priority Action</div>
+                    <div className="font-bold text-sm mb-1 leading-snug">"Add simple missed-call capture."</div>
+                    <div className="text-[10px] text-zinc-400">You missed 4 potential leads after 5pm.</div>
+                  </div>
+
+                  {/* 4. Trends */}
+                  <div className="border-t border-zinc-200 pt-4 flex justify-between text-[10px] font-medium text-zinc-500">
+                    <span>Forms: <span className="text-amber-600">Risk</span></span>
+                    <span>Speed: <span className="text-zinc-900">Stable</span></span>
+                    <span>Reviews: <span className="text-zinc-900">Flat</span></span>
+                  </div>
+                </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 md:-right-12 bg-white rounded-2xl p-4 shadow-xl border border-zinc-100 text-xs font-medium text-zinc-500 hidden md:block animate-bounce z-20">
-                👆 1-Page PDF Format
+
+              <div className="absolute -bottom-6 -right-6 md:-right-12 bg-white rounded-2xl p-4 shadow-xl border border-zinc-100 text-xs font-medium text-zinc-500 hidden md:flex items-center gap-2 animate-bounce z-20">
+                👆 Actual Report Format
               </div>
             </div>
           </div>
