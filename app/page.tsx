@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import {
   CheckCircle2,
   AlertCircle,
-  BarChart3,
   ShieldCheck,
   ArrowRight,
   Globe,
@@ -14,11 +16,22 @@ import {
   Minus,
   Activity,
   Files,
-  Search,
-  Clock
+  Clock,
+  Smartphone,
+  Zap,
+  Calendar,
+  Eye,
+  Bell
 } from "lucide-react";
 
 export default function Home() {
+  const [formStatus, setFormStatus] = useState<'idle' | 'success'>('idle');
+
+  const handleAuditSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus('success');
+  };
+
   return (
     <div className="min-h-screen font-sans text-gray-900 bg-white selection:bg-blue-100">
       {/* 1) Sticky Header */}
@@ -41,7 +54,7 @@ export default function Home() {
           </nav>
 
           <Link
-            href="/audit/new"
+            href="#audit-form"
             className="bg-gray-900 hover:bg-gray-800 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all"
           >
             Get my free audit
@@ -50,49 +63,96 @@ export default function Home() {
       </header>
 
       {/* 2) Hero Section */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-32 px-4 max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="pt-12 pb-16 md:pt-20 md:pb-24 px-4 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="space-y-8 max-w-2xl">
             <div className="space-y-4">
+              <p className="text-sm font-medium text-blue-600 tracking-wide uppercase">For local service businesses that rely on calls + inquiries</p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-[1.1]">
-                The Norton Antivirus for your online presence.
+                A monthly health check for your online presence.
               </h1>
-              <p className="text-xl md:text-2xl text-gray-500 leading-relaxed font-normal">
-                A simple monthly report that shows what’s improving, what’s slipping, and what’s broken — across your website, Google listing, calls, and social activity.
+              <p className="text-xl text-gray-500 leading-relaxed font-normal">
+                One clear monthly report that shows whether your website, Google listing, calls, and social activity are helping — or quietly slipping — compared to last month.
               </p>
-              <div className="flex items-center gap-2 text-blue-600 font-medium bg-blue-50 w-fit px-3 py-1 rounded-full text-sm">
-                <CheckCircle2 className="w-4 h-4" />
-                <span>No vendor drama. No extra dashboards.</span>
-              </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/audit/new"
-                className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-4 rounded-xl shadow-lg shadow-blue-600/20 hover:shadow-blue-600/30 transition-all flex items-center justify-center gap-2"
-              >
-                Run free audit
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <div className="flex items-center justify-center gap-6 px-4 text-sm font-medium text-gray-500">
-                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> 60 seconds</span>
-                <span className="w-1 h-1 bg-gray-300 rounded-full" />
-                <span>No credit card</span>
-                <span className="w-1 h-1 bg-gray-300 rounded-full" />
-                <span>Canada-first</span>
-              </div>
+            {/* INLINE FREE AUDIT REQUEST FORM */}
+            <div id="audit-form" className="bg-gray-50 p-6 rounded-2xl border border-gray-200">
+              {formStatus === 'idle' ? (
+                <form onSubmit={handleAuditSubmit} className="space-y-4">
+                  <div>
+                    <label htmlFor="business" className="sr-only">Business Name</label>
+                    <input
+                      type="text"
+                      id="business"
+                      required
+                      placeholder="Business Name"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="url" className="sr-only">Website or Google Listing URL</label>
+                    <input
+                      type="text"
+                      id="url"
+                      required
+                      placeholder="Website or Google Listing URL"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="sr-only">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      required
+                      placeholder="Email Address"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-lg shadow-lg shadow-blue-600/20 hover:shadow-blue-600/30 transition-all flex items-center justify-center gap-2"
+                  >
+                    Send my free audit <ArrowRight className="w-5 h-5" />
+                  </button>
+                  <p className="text-xs text-center text-gray-500 mt-3 flex items-center justify-center gap-2">
+                    <span>No credit card</span>
+                    <span className="w-1 h-1 bg-gray-300 rounded-full" />
+                    <span>Takes 60 seconds</span>
+                    <span className="w-1 h-1 bg-gray-300 rounded-full" />
+                    <span>We’ll email the preview</span>
+                  </p>
+                </form>
+              ) : (
+                <div className="text-center py-6 space-y-4">
+                  <div className="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle2 className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Thanks — we’ll email your preview shortly.</h3>
+                  <p className="text-gray-500 text-sm">Keep an eye on your inbox.</p>
+                  <div className="pt-2">
+                    <Link href="#" className="text-blue-600 font-medium hover:underline text-sm">
+                      Want it faster? Book a 10-min walkthrough
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Visual Mock Card: Monthly Online Health Report */}
-          <div className="relative">
+          <div className="relative mt-8 lg:mt-0">
             <div className="absolute -inset-4 bg-gradient-to-tr from-blue-100 to-violet-100 rounded-[2rem] opacity-60 blur-2xl -z-10" />
             <div className="bg-white rounded-2xl shadow-xl border border-gray-200/60 overflow-hidden max-w-md mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-500">
               {/* Card Header */}
               <div className="bg-gray-50 border-b border-gray-100 p-6 flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">Monthly Health Report</h3>
-                  <p className="text-xs text-gray-500 mt-0.5">Report #12 • February 2026</p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <p className="text-xs text-gray-600 font-medium">This month vs last month</p>
+                  </div>
                 </div>
                 <div className="text-right">
                   <div className="text-2xl font-bold text-gray-900">6/10</div>
@@ -101,64 +161,82 @@ export default function Home() {
               </div>
 
               {/* Status Table */}
-              <div className="p-6 space-y-4">
+              <div className="p-6 space-y-5">
+                {/* Row 1: Forms */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
-                      <Globe className="w-4 h-4" />
+                      <Smartphone className="w-4 h-4" />
                     </div>
-                    <span className="font-medium text-gray-700">Website</span>
+                    <span className="font-medium text-gray-700">Forms</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
-                    <span className="text-sm text-gray-500">Online</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
-                      <PhoneCall className="w-4 h-4" />
-                    </div>
-                    <span className="font-medium text-gray-700">Call Lines</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-500" />
-                    <span className="text-sm text-gray-500">Active</span>
+                    <span className="text-sm text-gray-500">Working</span>
+                    <span className="text-green-500"><TrendingUp className="w-4 h-4" /></span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600">
-                      <MessageSquare className="w-4 h-4" />
-                    </div>
-                    <span className="font-medium text-gray-700">Social</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-gray-300" />
-                    <span className="text-sm text-gray-500">Not Linked</span>
-                  </div>
-                </div>
-
+                {/* Row 2: Hours */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600">
-                      <MapPin className="w-4 h-4" />
+                      <Clock className="w-4 h-4" />
                     </div>
-                    <span className="font-medium text-gray-700">Google Listing</span>
+                    <span className="font-medium text-gray-700">Hours</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse" />
-                    <span className="text-sm text-gray-500">Warning</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-gray-500">Risk</span>
+                    <span className="text-orange-500"><AlertCircle className="w-4 h-4" /></span>
+                  </div>
+                </div>
+
+                {/* Row 3: Speed */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-600">
+                      <Zap className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium text-gray-700">Speed</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-gray-500">Slipping</span>
+                    <span className="text-red-500"><TrendingDown className="w-4 h-4" /></span>
+                  </div>
+                </div>
+
+                {/* Row 4: Reviews */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
+                      <MessageSquare className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium text-gray-700">Reviews</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-gray-500">Stable</span>
+                    <span className="text-gray-400"><Minus className="w-4 h-4" /></span>
+                  </div>
+                </div>
+
+                {/* Row 5: Missed Calls */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600">
+                      <PhoneCall className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium text-gray-700">Missed calls</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-gray-500">Down</span>
+                    <span className="text-green-500"><TrendingDown className="w-4 h-4" /></span>
                   </div>
                 </div>
 
                 <div className="mt-6 p-4 bg-orange-50 rounded-xl border border-orange-100 flex gap-3 items-start">
                   <AlertCircle className="w-5 h-5 text-orange-600 shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">Critical Issue Detected</p>
-                    <p className="text-xs text-gray-600 mt-1">Your Google Business hours don't match your website. This is hurting your local ranking.</p>
+                    <p className="text-sm font-semibold text-gray-900">Recommendation</p>
+                    <p className="text-xs text-gray-600 mt-1">Fix mobile form friction to prevent lost inquiries.</p>
                   </div>
                 </div>
               </div>
@@ -167,36 +245,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3) Trust Strip */}
-      <section className="border-y border-gray-100 bg-gray-50/50 py-12">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: BarChart3,
-              title: "One-glance Score",
-              desc: "Instantly know the health of your digital presence. No complex charts."
-            },
-            {
-              icon: AlertCircle,
-              title: "Instant Alerts",
-              desc: "We notify you the moment your site goes down or forms break."
-            },
-            {
-              icon: ShieldCheck,
-              title: "Vendor Neutral",
-              desc: "We don’t sell SEO or ads. We just tell you if yours are working."
-            }
-          ].map((item, i) => (
-            <div key={i} className="flex items-start gap-4">
-              <div className="bg-white p-2.5 rounded-lg border border-gray-200 shadow-sm text-blue-600">
-                <item.icon className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">{item.title}</h3>
-                <p className="text-sm text-gray-500 mt-1 leading-relaxed">{item.desc}</p>
-              </div>
+      {/* 4) WHAT WE MONITOR (Directly Below Hero) */}
+      <section className="border-y border-gray-100 bg-gray-50/50 py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {/* Website */}
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-4"><Globe className="w-5 h-5" /></div>
+              <h3 className="font-bold text-gray-900 mb-2">Website</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Forms • Mobile • Speed</p>
             </div>
-          ))}
+            {/* Google Listing */}
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 bg-orange-50 text-orange-600 rounded-lg flex items-center justify-center mb-4"><MapPin className="w-5 h-5" /></div>
+              <h3 className="font-bold text-gray-900 mb-2">Google Listing</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Hours • Visibility • Reviews</p>
+            </div>
+            {/* Calls */}
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 bg-green-50 text-green-600 rounded-lg flex items-center justify-center mb-4"><PhoneCall className="w-5 h-5" /></div>
+              <h3 className="font-bold text-gray-900 mb-2">Calls</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Missed-call trend • After-hours risk</p>
+            </div>
+            {/* Social */}
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-4"><MessageSquare className="w-5 h-5" /></div>
+              <h3 className="font-bold text-gray-900 mb-2">Social</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Posting consistency • Engagement trend</p>
+            </div>
+            {/* Alerts */}
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center mb-4"><Bell className="w-5 h-5" /></div>
+              <h3 className="font-bold text-gray-900 mb-2">Alerts</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Breakage • Sudden drops</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -281,17 +364,27 @@ export default function Home() {
             </div>
 
             {/* Calls & Inquiry */}
-            <div className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700/50">
+            <div className="bg-gray-800/50 p-8 rounded-2xl border border-gray-700/50 relative overflow-hidden">
               <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center mb-6 text-blue-400">
                 <PhoneCall className="w-5 h-5" />
               </div>
               <h3 className="text-xl font-bold mb-4">Calls & Inquiries</h3>
-              <p className="text-xs text-gray-500 mb-3 uppercase tracking-wide">Optional & Non-Invasive</p>
-              <ul className="space-y-3 text-gray-300">
+              <p className="text-xs text-blue-200 bg-blue-900/40 border border-blue-800 px-3 py-1.5 rounded-lg mb-4 inline-block font-medium">
+                Optional & Non-Invasive
+              </p>
+              <ul className="space-y-3 text-gray-300 mb-6">
                 <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Missed call trends</li>
                 <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> After-hours callback risk</li>
                 <li className="flex items-center gap-2 text-sm"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Total inquiry volume</li>
               </ul>
+
+              {/* Trust block for calls */}
+              <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-700">
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  <span className="text-gray-200 font-semibold block mb-1">Privacy First:</span>
+                  No recordings. Tracks trends only (call volume / missed calls). You keep your number.
+                </p>
+              </div>
             </div>
 
             {/* Google Listing */}
@@ -337,6 +430,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 7) Testimonials (Early Preview Feedback) */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-12 text-center">Early Preview Feedback</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                quote: "Finally something that doesn't feel like another dashboard I have to log into. It just tells me if I'm winning or losing.",
+                author: "Owner, Local Service Business (Toronto)"
+              },
+              {
+                quote: "I used to pay an agency $500/mo just to send me similar reports. This is cleaner and faster.",
+                author: "Office Manager, Clinic (Ontario)"
+              },
+              {
+                quote: "It caught a broken contact form on our mobile site that we wouldn't have noticed for weeks.",
+                author: "Founder, Trades Company (Canada)"
+              }
+            ].map((t, i) => (
+              <div key={i} className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                <div className="flex gap-1 mb-4">
+                  {[1, 2, 3, 4, 5].map(s => <div key={s} className="w-4 h-4 bg-orange-400 rounded-full" />)}
+                </div>
+                <p className="text-gray-700 mb-6 font-medium leading-relaxed">"{t.quote}"</p>
+                <p className="text-sm text-gray-400 font-medium">{t.author}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 6) Pricing */}
       <section id="pricing" className="py-20 md:py-32 px-4 text-center max-w-4xl mx-auto">
         <h2 className="text-3xl font-bold text-gray-900 mb-6">Simple, vendor-neutral pricing.</h2>
@@ -364,12 +488,16 @@ export default function Home() {
             </li>
             <li className="flex items-center gap-3 text-gray-600">
               <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0" />
-              <span>Works alongside existing vendors</span>
+              <span>Works with any website or agency</span>
+            </li>
+            <li className="flex items-center gap-3 text-gray-600">
+              <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0" />
+              <span>You keep your last report</span>
             </li>
           </ul>
 
           <Link
-            href="/audit/new"
+            href="#audit-form"
             className="block w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 rounded-xl transition-all"
           >
             Start with a free audit
@@ -411,13 +539,13 @@ export default function Home() {
       </section>
 
       {/* 8) Final CTA */}
-      <section className="py-24 px-4 text-center">
+      <section className="py-24 px-4 text-center pb-32">
         <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Get your free audit in 60 seconds.</h2>
         <p className="text-xl text-gray-500 mb-8 max-w-xl mx-auto">
           See exactly where you stand with a neutral, third-party scan.
         </p>
         <Link
-          href="/audit/new"
+          href="#audit-form"
           className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold px-10 py-5 rounded-full shadow-xl shadow-blue-600/20 hover:shadow-blue-600/30 transition-all transform hover:-translate-y-1"
         >
           Get my free audit
